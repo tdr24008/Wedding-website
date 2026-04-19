@@ -9,7 +9,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-const WEDDING_DATE = new Date("2026-09-12T14:00:00");
+const WEDDING_DATE = new Date("2026-09-26T14:00:00");
 
 function calculateTimeLeft(): TimeLeft {
   const diff = WEDDING_DATE.getTime() - Date.now();
@@ -24,10 +24,10 @@ function calculateTimeLeft(): TimeLeft {
 
 function CountdownUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", minWidth: 64 }}>
       <div
         style={{
-          fontSize: 48,
+          fontSize: 56,
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#3D2514",
@@ -38,7 +38,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
       <div
         style={{
           fontFamily: "var(--font-karla), sans-serif",
-          fontSize: 11,
+          fontSize: 13,
           letterSpacing: 3,
           textTransform: "uppercase",
           color: "#8A6A3D",
@@ -47,6 +47,24 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
       >
         {label}
       </div>
+    </div>
+  );
+}
+
+function DecorativeLine() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        margin: "32px auto",
+        maxWidth: 200,
+      }}
+    >
+      <span style={{ flex: 1, height: 1, backgroundColor: "#B8935A" }} />
+      <span style={{ color: "#B8935A", fontSize: 10 }}>✦</span>
+      <span style={{ flex: 1, height: 1, backgroundColor: "#B8935A" }} />
     </div>
   );
 }
@@ -81,11 +99,11 @@ export default function Hero() {
       <p
         style={{
           fontFamily: "var(--font-karla), sans-serif",
-          fontSize: 11,
+          fontSize: 13,
           letterSpacing: 3,
           textTransform: "uppercase",
           color: "#8A6A3D",
-          marginBottom: 24,
+          marginBottom: 32,
         }}
       >
         Together with their families
@@ -97,20 +115,22 @@ export default function Hero() {
           fontWeight: 400,
           color: "#3D2514",
           lineHeight: 1.1,
-          marginBottom: 16,
+          marginBottom: 8,
         }}
       >
-        Tom <span style={{ fontStyle: "italic" }}>&amp;</span> Jane
+        Tom <span style={{ fontStyle: "italic" }}>&amp;</span> Morgan
       </h1>
+
+      <DecorativeLine />
 
       <p
         style={{
           fontFamily: "var(--font-karla), sans-serif",
-          fontSize: 11,
+          fontSize: 13,
           letterSpacing: 3,
           textTransform: "uppercase",
           color: "#8A6A3D",
-          marginBottom: 8,
+          marginBottom: 16,
         }}
       >
         Request the pleasure of your company
@@ -118,17 +138,17 @@ export default function Hero() {
 
       <p
         style={{
-          fontSize: 22,
+          fontSize: 26,
           color: "#5C3A1E",
-          marginBottom: 8,
+          lineHeight: 1.6,
         }}
       >
-        Saturday, the twelfth of September
+        Saturday, the twenty-sixth of September
       </p>
 
       <p
         style={{
-          fontSize: 22,
+          fontSize: 26,
           color: "#5C3A1E",
           marginBottom: 8,
         }}
@@ -138,12 +158,15 @@ export default function Hero() {
 
       <p
         style={{
-          fontSize: 18,
+          fontFamily: "var(--font-karla), sans-serif",
+          fontSize: 14,
+          letterSpacing: 2,
+          textTransform: "uppercase",
           color: "#8A6A3D",
-          marginBottom: 48,
+          marginBottom: 56,
         }}
       >
-        Cotswolds, Oxfordshire
+        Somerton, Somerset
       </p>
 
       {timeLeft && (
@@ -151,7 +174,7 @@ export default function Hero() {
           style={{
             display: "flex",
             gap: "clamp(24px, 5vw, 48px)",
-            marginBottom: 48,
+            marginBottom: 56,
           }}
         >
           <CountdownUnit value={timeLeft.days} label="Days" />
@@ -169,15 +192,16 @@ export default function Hero() {
         }}
         style={{
           fontFamily: "var(--font-karla), sans-serif",
-          fontSize: 12,
+          fontSize: 14,
           letterSpacing: 2,
           textTransform: "uppercase",
           backgroundColor: "#5C3A1E",
           color: "#F5EBD6",
-          padding: "14px 40px",
+          padding: "16px 48px",
           textDecoration: "none",
           border: "none",
           cursor: "pointer",
+          transition: "background-color 0.2s",
         }}
       >
         RSVP
