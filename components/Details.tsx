@@ -3,33 +3,44 @@ import Divider from "@/components/ui/Divider";
 
 interface DetailCardProps {
   title: string;
+  icon: string;
   children: React.ReactNode;
 }
 
-function DetailCard({ title, children }: DetailCardProps) {
+function DetailCard({ title, icon, children }: DetailCardProps) {
   return (
     <div
       style={{
         backgroundColor: "#FAF6EF",
-        padding: 32,
+        padding: "40px 32px",
         flex: 1,
         minWidth: 260,
         textAlign: "center",
+        borderTop: "2px solid #B8935A",
       }}
     >
+      <p
+        style={{
+          fontSize: 28,
+          marginBottom: 12,
+          lineHeight: 1,
+        }}
+      >
+        {icon}
+      </p>
       <h3
         style={{
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 400,
           color: "#3D2514",
-          marginBottom: 16,
+          marginBottom: 20,
         }}
       >
         {title}
       </h3>
       <div
         style={{
-          fontSize: 16,
+          fontSize: 18,
           lineHeight: 1.8,
           color: "#5C3A1E",
         }}
@@ -54,7 +65,7 @@ export default function Details() {
           <SectionLabel text="The Details" />
           <h2
             style={{
-              fontSize: 36,
+              fontSize: 42,
               fontWeight: 400,
               color: "#3D2514",
               marginBottom: 16,
@@ -72,27 +83,43 @@ export default function Details() {
             flexWrap: "wrap",
           }}
         >
-          <DetailCard title="Ceremony">
-            <p>[VENUE NAME]</p>
+          <DetailCard title="Ceremony" icon="⛪">
+            <p style={{ fontWeight: 500, color: "#3D2514" }}>[VENUE NAME]</p>
             <p>[TIME]</p>
-            <p style={{ marginTop: 8, color: "#8A6A3D" }}>
-              Cotswolds, Oxfordshire
+            <p
+              style={{
+                marginTop: 12,
+                fontFamily: "var(--font-karla), sans-serif",
+                fontSize: 13,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#8A6A3D",
+              }}
+            >
+              Somerton, Somerset
             </p>
           </DetailCard>
 
-          <DetailCard title="Reception">
-            <p>[VENUE NAME]</p>
+          <DetailCard title="Reception" icon="🥂">
+            <p style={{ fontWeight: 500, color: "#3D2514" }}>[VENUE NAME]</p>
             <p>[TIME]</p>
-            <p style={{ marginTop: 8, color: "#8A6A3D" }}>
+            <p
+              style={{
+                marginTop: 12,
+                fontFamily: "var(--font-karla), sans-serif",
+                fontSize: 13,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#8A6A3D",
+              }}
+            >
               Dinner, dancing &amp; celebrations
             </p>
           </DetailCard>
 
-          <DetailCard title="Dress Code">
-            <p>[DRESS CODE]</p>
-            <p style={{ marginTop: 8, color: "#8A6A3D" }}>
-              [Additional guidance]
-            </p>
+          <DetailCard title="Dress Code" icon="👔">
+            <p style={{ fontWeight: 500, color: "#3D2514" }}>[DRESS CODE]</p>
+            <p style={{ marginTop: 8 }}>[Additional guidance]</p>
           </DetailCard>
         </div>
       </div>
