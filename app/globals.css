@@ -1,0 +1,14 @@
+/* Reset — minimal baseline for the migration */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #F5EBD6;
+  color: #3D2514;
+}
