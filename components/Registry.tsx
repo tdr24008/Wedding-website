@@ -58,8 +58,7 @@ export default function Registry() {
           </p>
 
           <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
+            href="#registry"
             style={{
               fontFamily: "var(--font-karla), sans-serif",
               fontSize: 14,
