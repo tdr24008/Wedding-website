@@ -13,17 +13,13 @@ interface FaqItemProps {
 
 function FaqItem({ question, answer, isOpen, onToggle }: FaqItemProps) {
   return (
-    <div
-      style={{
-        borderBottom: "1px solid #D9C9A8",
-      }}
-    >
+    <div style={{ borderBottom: "1px solid #D9C9A8" }}>
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
         style={{
           width: "100%",
-          padding: "20px 0",
+          padding: "24px 0",
           background: "none",
           border: "none",
           cursor: "pointer",
@@ -31,11 +27,12 @@ function FaqItem({ question, answer, isOpen, onToggle }: FaqItemProps) {
           justifyContent: "space-between",
           alignItems: "center",
           textAlign: "left",
+          gap: 16,
         }}
       >
         <span
           style={{
-            fontSize: 18,
+            fontSize: 20,
             fontFamily: "var(--font-cormorant), serif",
             color: "#3D2514",
           }}
@@ -44,10 +41,17 @@ function FaqItem({ question, answer, isOpen, onToggle }: FaqItemProps) {
         </span>
         <span
           style={{
+            fontFamily: "var(--font-karla), sans-serif",
             fontSize: 20,
-            color: "#8A6A3D",
+            color: "#B8935A",
             transition: "transform 0.2s",
             transform: isOpen ? "rotate(45deg)" : "none",
+            flexShrink: 0,
+            width: 24,
+            height: 24,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           +
@@ -56,8 +60,8 @@ function FaqItem({ question, answer, isOpen, onToggle }: FaqItemProps) {
       {isOpen && (
         <div
           style={{
-            padding: "0 0 20px",
-            fontSize: 16,
+            padding: "0 0 24px",
+            fontSize: 18,
             lineHeight: 1.8,
             color: "#5C3A1E",
           }}
@@ -81,7 +85,7 @@ const FAQ_DATA = [
   {
     question: "Can I bring a plus one?",
     answer:
-      "We have limited space, so please only bring those named on your invitation. If you're unsure, please get in touch.",
+      "We have limited space, so please only bring those named on your invitation. If you\u2019re unsure, please get in touch.",
   },
   {
     question: "Are children welcome?",
@@ -94,7 +98,7 @@ const FAQ_DATA = [
   {
     question: "Will there be vegetarian/vegan options?",
     answer:
-      "Absolutely! Please let us know your dietary requirements when you RSVP and we will make sure you are well fed.",
+      "Absolutely! Please let us know your dietary requirements when you RSVP and we\u2019ll make sure you are well fed.",
   },
 ];
 
@@ -114,7 +118,7 @@ export default function Faq() {
           <SectionLabel text="Questions" />
           <h2
             style={{
-              fontSize: 36,
+              fontSize: 42,
               fontWeight: 400,
               color: "#3D2514",
               marginBottom: 16,
@@ -125,7 +129,7 @@ export default function Faq() {
           <Divider icon="?" />
         </div>
 
-        <div>
+        <div style={{ borderTop: "1px solid #D9C9A8" }}>
           {FAQ_DATA.map((item, i) => (
             <FaqItem
               key={item.question}
