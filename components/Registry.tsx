@@ -14,7 +14,7 @@ export default function Registry() {
         <SectionLabel text="Gifts" />
         <h2
           style={{
-            fontSize: 36,
+            fontSize: 42,
             fontWeight: 400,
             color: "#3D2514",
             marginBottom: 16,
@@ -24,27 +24,58 @@ export default function Registry() {
         </h2>
         <Divider icon="✦" />
 
-        <p
+        <div
           style={{
-            fontSize: 18,
-            lineHeight: 1.8,
-            color: "#5C3A1E",
-            marginBottom: 24,
+            backgroundColor: "#FAF6EF",
+            padding: "40px 32px",
+            borderTop: "2px solid #B8935A",
           }}
         >
-          Your presence at our wedding is the greatest gift of all. However, if
-          you wish to give something, we would love a contribution towards our
-          honeymoon.
-        </p>
+          <p
+            style={{
+              fontSize: 20,
+              lineHeight: 1.8,
+              color: "#5C3A1E",
+              marginBottom: 24,
+            }}
+          >
+            Your presence at our wedding is the greatest gift of all. However,
+            if you wish to give something, we would love a contribution towards
+            our honeymoon.
+          </p>
 
-        <p
-          style={{
-            fontSize: 16,
-            color: "#8A6A3D",
-          }}
-        >
-          [Honeymoon fund link or details will go here]
-        </p>
+          <p
+            style={{
+              fontFamily: "var(--font-karla), sans-serif",
+              fontSize: 13,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: "#8A6A3D",
+              marginBottom: 24,
+            }}
+          >
+            [Honeymoon fund link or details will go here]
+          </p>
+
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            style={{
+              fontFamily: "var(--font-karla), sans-serif",
+              fontSize: 14,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: "#5C3A1E",
+              padding: "14px 40px",
+              border: "1px solid #5C3A1E",
+              textDecoration: "none",
+              display: "inline-block",
+              transition: "background-color 0.2s, color 0.2s",
+            }}
+          >
+            View Honeymoon Fund
+          </a>
+        </div>
       </div>
     </section>
   );
