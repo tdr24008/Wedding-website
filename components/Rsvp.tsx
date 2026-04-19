@@ -8,22 +8,35 @@ type Attendance = "" | "yes" | "no";
 
 const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-karla), sans-serif",
-  fontSize: 15,
-  padding: "12px 16px",
+  fontSize: 17,
+  padding: "14px 16px",
   border: "1px solid #D9C9A8",
   backgroundColor: "#FAF6EF",
   color: "#3D2514",
   width: "100%",
   outline: "none",
+  transition: "border-color 0.2s",
 };
 
 const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-karla), sans-serif",
   fontSize: 13,
   fontWeight: 500,
-  color: "#5C3A1E",
+  letterSpacing: 1,
+  textTransform: "uppercase",
+  color: "#8A6A3D",
   display: "block",
-  marginBottom: 6,
+  marginBottom: 8,
+};
+
+const radioLabelStyle: React.CSSProperties = {
+  fontFamily: "var(--font-karla), sans-serif",
+  fontSize: 16,
+  color: "#5C3A1E",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
 };
 
 export default function Rsvp() {
@@ -50,20 +63,22 @@ export default function Rsvp() {
         }}
       >
         <div style={{ maxWidth: 520, margin: "0 auto" }}>
+          <SectionLabel text="Thank You" />
           <h2
             style={{
-              fontSize: 36,
+              fontSize: 42,
               fontWeight: 400,
               color: "#3D2514",
               marginBottom: 16,
             }}
           >
-            Thank You
+            {attending === "yes" ? "See You There" : "We\u2019ll Miss You"}
           </h2>
-          <p style={{ fontSize: 18, color: "#5C3A1E" }}>
+          <Divider icon="♥" />
+          <p style={{ fontSize: 20, color: "#5C3A1E", lineHeight: 1.7 }}>
             {attending === "yes"
-              ? "We can't wait to celebrate with you!"
-              : "We're sorry you can't make it. You'll be missed!"}
+              ? "Thank you for your RSVP. We can\u2019t wait to celebrate with you!"
+              : "Thank you for letting us know. We\u2019re sorry you can\u2019t make it \u2014 you\u2019ll be missed!"}
           </p>
         </div>
       </section>
@@ -83,7 +98,7 @@ export default function Rsvp() {
           <SectionLabel text="Respond" />
           <h2
             style={{
-              fontSize: 36,
+              fontSize: 42,
               fontWeight: 400,
               color: "#3D2514",
               marginBottom: 8,
@@ -93,7 +108,7 @@ export default function Rsvp() {
           </h2>
           <p
             style={{
-              fontSize: 16,
+              fontSize: 18,
               color: "#8A6A3D",
               marginBottom: 8,
             }}
@@ -104,7 +119,7 @@ export default function Rsvp() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 24 }}>
             <label htmlFor="rsvp-name" style={labelStyle}>
               Full name
             </label>
@@ -118,7 +133,7 @@ export default function Rsvp() {
             />
           </div>
 
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 24 }}>
             <label htmlFor="rsvp-email" style={labelStyle}>
               Email address
             </label>
@@ -132,23 +147,13 @@ export default function Rsvp() {
             />
           </div>
 
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 24 }}>
             <fieldset style={{ border: "none", padding: 0 }}>
-              <legend style={{ ...labelStyle, marginBottom: 10 }}>
+              <legend style={{ ...labelStyle, marginBottom: 12 }}>
                 Will you be attending?
               </legend>
-              <div style={{ display: "flex", gap: 24 }}>
-                <label
-                  style={{
-                    fontFamily: "var(--font-karla), sans-serif",
-                    fontSize: 14,
-                    color: "#5C3A1E",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                  }}
-                >
+              <div style={{ display: "flex", gap: 32 }}>
+                <label style={radioLabelStyle}>
                   <input
                     type="radio"
                     name="attending"
@@ -156,26 +161,18 @@ export default function Rsvp() {
                     required
                     checked={attending === "yes"}
                     onChange={() => setAttending("yes")}
+                    style={{ accentColor: "#5C3A1E" }}
                   />
                   Joyfully accepts
                 </label>
-                <label
-                  style={{
-                    fontFamily: "var(--font-karla), sans-serif",
-                    fontSize: 14,
-                    color: "#5C3A1E",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                  }}
-                >
+                <label style={radioLabelStyle}>
                   <input
                     type="radio"
                     name="attending"
                     value="no"
                     checked={attending === "no"}
                     onChange={() => setAttending("no")}
+                    style={{ accentColor: "#5C3A1E" }}
                   />
                   Regretfully declines
                 </label>
@@ -185,7 +182,7 @@ export default function Rsvp() {
 
           {attending === "yes" && (
             <>
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 24 }}>
                 <label htmlFor="rsvp-meal" style={labelStyle}>
                   Meal preference
                 </label>
@@ -203,7 +200,7 @@ export default function Rsvp() {
                 </select>
               </div>
 
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 24 }}>
                 <label htmlFor="rsvp-dietary" style={labelStyle}>
                   Dietary requirements
                 </label>
@@ -223,22 +220,31 @@ export default function Rsvp() {
             type="submit"
             style={{
               fontFamily: "var(--font-karla), sans-serif",
-              fontSize: 12,
+              fontSize: 14,
               letterSpacing: 2,
               textTransform: "uppercase",
               backgroundColor: "#5C3A1E",
               color: "#F5EBD6",
-              padding: "14px 40px",
+              padding: "16px 40px",
               border: "none",
               cursor: "pointer",
               width: "100%",
               marginTop: 8,
+              transition: "background-color 0.2s",
             }}
           >
             Submit RSVP
           </button>
         </form>
       </div>
+
+      <style>{`
+        #rsvp input:focus,
+        #rsvp select:focus,
+        #rsvp textarea:focus {
+          border-color: #B8935A !important;
+        }
+      `}</style>
     </section>
   );
 }
