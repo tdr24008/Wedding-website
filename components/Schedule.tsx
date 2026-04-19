@@ -24,7 +24,7 @@ function ScheduleItem({ time, title, description, isLast }: ScheduleItemProps) {
           fontFamily: "var(--font-karla), sans-serif",
           fontSize: 15,
           letterSpacing: 1,
-          color: "#B8935A",
+          color: "#8A6A3D",
           minWidth: 72,
           textAlign: "right",
           fontWeight: 500,

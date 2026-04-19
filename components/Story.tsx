@@ -16,7 +16,7 @@ function Milestone({ year, title, description }: MilestoneProps) {
           fontSize: 13,
           letterSpacing: 3,
           textTransform: "uppercase",
-          color: "#B8935A",
+          color: "#8A6A3D",
           marginBottom: 8,
         }}
       >

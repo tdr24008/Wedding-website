@@ -5,6 +5,7 @@ interface DividerProps {
 export default function Divider({ icon = "·" }: DividerProps) {
   return (
     <div
+      aria-hidden="true"
       style={{
         display: "flex",
         alignItems: "center",
@@ -23,7 +24,7 @@ export default function Divider({ icon = "·" }: DividerProps) {
       <span
         style={{
           color: "#B8935A",
-          fontSize: 18,
+          fontSize: 20,
           lineHeight: 1,
         }}
       >

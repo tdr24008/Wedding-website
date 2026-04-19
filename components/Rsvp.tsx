@@ -14,7 +14,6 @@ const inputStyle: React.CSSProperties = {
   backgroundColor: "#FAF6EF",
   color: "#3D2514",
   width: "100%",
-  outline: "none",
   transition: "border-color 0.2s",
 };
 

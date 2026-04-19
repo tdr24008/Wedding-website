@@ -12,15 +12,20 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <Nav />
-      <Hero />
-      <Story />
-      <Details />
-      <Schedule />
-      <Travel />
-      <Rsvp />
-      <Registry />
-      <Faq />
+      <main id="main-content">
+        <Hero />
+        <Story />
+        <Details />
+        <Schedule />
+        <Travel />
+        <Rsvp />
+        <Registry />
+        <Faq />
+      </main>
       <Footer />
     </>
   );

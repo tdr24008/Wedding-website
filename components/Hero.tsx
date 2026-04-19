@@ -54,6 +54,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 function DecorativeLine() {
   return (
     <div
+      aria-hidden="true"
       style={{
         display: "flex",
         alignItems: "center",
@@ -171,6 +172,8 @@ export default function Hero() {
 
       {timeLeft && (
         <div
+          role="timer"
+          aria-label={`${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes until the wedding`}
           style={{
             display: "flex",
             gap: "clamp(24px, 5vw, 48px)",
