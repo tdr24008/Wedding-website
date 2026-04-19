@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
@@ -16,12 +16,25 @@ const NAV_ITEMS = [
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
+
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 50);
+
+    const scrollY = window.scrollY + 120;
+    for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+      const el = document.querySelector(NAV_ITEMS[i].href);
+      if (el && (el as HTMLElement).offsetTop <= scrollY) {
+        setActiveSection(NAV_ITEMS[i].href);
+        break;
+      }
+    }
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -31,6 +44,18 @@ export default function Nav() {
     }
     setMenuOpen(false);
   };
+
+  const linkStyle = (href: string): React.CSSProperties => ({
+    fontFamily: "var(--font-karla), sans-serif",
+    fontSize: 13,
+    letterSpacing: 2,
+    textTransform: "uppercase",
+    color: activeSection === href ? "#B8935A" : "#5C3A1E",
+    textDecoration: "none",
+    transition: "color 0.2s",
+    paddingBottom: 2,
+    borderBottom: activeSection === href ? "1px solid #B8935A" : "1px solid transparent",
+  });
 
   return (
     <nav
@@ -58,16 +83,15 @@ export default function Nav() {
           onClick={(e) => handleLinkClick(e, "#home")}
           style={{
             fontFamily: "var(--font-cormorant), serif",
-            fontSize: 22,
+            fontSize: 26,
             color: "#3D2514",
             textDecoration: "none",
             fontWeight: 400,
           }}
         >
-          T <span style={{ fontStyle: "italic" }}>&amp;</span> J
+          T <span style={{ fontStyle: "italic" }}>&amp;</span> M
         </a>
 
-        {/* Desktop links */}
         <ul
           style={{
             display: "flex",
@@ -81,15 +105,7 @@ export default function Nav() {
               <a
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.href)}
-                style={{
-                  fontFamily: "var(--font-karla), sans-serif",
-                  fontSize: 11,
-                  letterSpacing: 2,
-                  textTransform: "uppercase",
-                  color: "#5C3A1E",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
+                style={linkStyle(item.href)}
               >
                 {item.label}
               </a>
@@ -97,7 +113,6 @@ export default function Nav() {
           ))}
         </ul>
 
-        {/* Hamburger for mobile */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -113,16 +128,14 @@ export default function Nav() {
             gap: 5,
           }}
         >
-          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block" }} />
-          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block" }} />
-          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block" }} />
+          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block", transition: "transform 0.2s", transform: menuOpen ? "rotate(45deg) translate(4px, 4px)" : "none" }} />
+          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block", transition: "opacity 0.2s", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ width: 24, height: 2, backgroundColor: "#3D2514", display: "block", transition: "transform 0.2s", transform: menuOpen ? "rotate(-45deg) translate(4px, -4px)" : "none" }} />
         </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <ul
-          className="nav-mobile"
           style={{
             listStyle: "none",
             padding: "0 24px 16px",
@@ -136,14 +149,15 @@ export default function Nav() {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 style={{
                   fontFamily: "var(--font-karla), sans-serif",
-                  fontSize: 12,
+                  fontSize: 14,
                   letterSpacing: 2,
                   textTransform: "uppercase",
-                  color: "#5C3A1E",
+                  color: activeSection === item.href ? "#B8935A" : "#5C3A1E",
                   textDecoration: "none",
                   display: "block",
                   padding: "12px 0",
                   borderBottom: "1px solid #D9C9A8",
+                  transition: "color 0.2s",
                 }}
               >
                 {item.label}
@@ -153,7 +167,6 @@ export default function Nav() {
         </ul>
       )}
 
-      {/* Responsive styles for hamburger/desktop toggle */}
       <style>{`
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
